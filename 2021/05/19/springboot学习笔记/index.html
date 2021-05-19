@@ -17,13 +17,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
     <link rel="shortcut icon" href="/images/logo.svg">
-    
-<link rel="stylesheet" href="/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
-    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://img-blog.csdnimg.cn/20210519110527918.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODYyMjIz,size_16,color_FFFFFF,t_70#pic_center","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -32,7 +30,14 @@
 <body>
 <div class="progress-bar-container">
     
+        <span class="scroll-progress-bar"></span>
+    
 
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
     
 </div>
 
@@ -74,10 +79,40 @@
                             </a>
                         </li>
                     
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
                     
                 </ul>
             </div>
             <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
                 <div class="icon-item menu-bar">
                     <div class="menu-bar-middle"></div>
@@ -97,6 +132,21 @@
                 <li class="drawer-menu-item flex-center">
                     <a class=""
                        href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
                 </li>
             
         </ul>
@@ -124,7 +174,7 @@
         
             <div class="article-header">
                 <div class="avatar">
-                    <img src="/images/avatar.svg">
+                    <img src="https://img-blog.csdnimg.cn/20210519110527918.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODYyMjIz,size_16,color_FFFFFF,t_70#pic_center">
                 </div>
                 <div class="info">
                     <div class="author">
@@ -139,11 +189,41 @@
         <i class="fas fa-edit"></i>&nbsp;2021-05-19 10:19:02
     </span>
     
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/java%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">java框架学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/java/">java</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3k Words</span>
+        </span>
     
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
@@ -242,7 +322,12 @@
 <li>在 <code>META-INF\spring.fatories</code>文件中定义了很多自动配置类；可以根据在pom.xml文件中添加的 启动器依赖自动配置组件</li>
 <li>通过如下流程可以去修改application配置文件，改变自动配置的组件默认参数</li>
 </ul>
-<p><img src="assets/1560091228494.png" alt="1560091228494"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="assets/1560091228494.png"
+                      alt="1560091228494"
+                ></p>
 <h2 id="7-lombok应用"><a href="#7-lombok应用" class="headerlink" title="7. lombok应用"></a>7. lombok应用</h2><p><strong>目标</strong>：使用lombok的注解实现pojo类的简化</p>
 <p><strong>分析</strong>：</p>
 <p>使用Spring Boot整合SSM工程；需要使用到数据库数据。</p>
@@ -278,7 +363,12 @@
 
 <ul>
 <li><p>在spring boot项目中静态资源可以放置在如下目录：</p>
-<p><img src="assets/1560096384799.png" alt="1560096384799"> </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="assets/1560096384799.png"
+                      alt="1560096384799"
+                > </p>
 </li>
 </ul>
 <h2 id="9-Spring-Boot整合-SpringMVC拦截器"><a href="#9-Spring-Boot整合-SpringMVC拦截器" class="headerlink" title="9.Spring Boot整合-SpringMVC拦截器"></a>9.Spring Boot整合-SpringMVC拦截器</h2><p><strong>目标</strong>：可以在Spring Boot项目中配置自定义SpringMVC拦截器</p>
@@ -330,7 +420,12 @@
 <li><p>配置mybatis</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="comment"># 实体类别名包路径</span></span><br><span class="line">  <span class="attr">type-aliases-package:</span> <span class="string">com.itheima.pojo</span></span><br><span class="line">  <span class="comment"># 映射文件路径</span></span><br><span class="line">  <span class="comment"># mapper-locations: classpath:mappers/*.xml</span></span><br><span class="line">  <span class="attr">configuration:</span></span><br><span class="line">    <span class="attr">log-impl:</span> <span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span></span><br></pre></td></tr></table></figure></li>
 <li><p>设置启动器类中的mapper扫描</p>
-<p><img src="assets/1560178298122.png" alt="1560178298122"> </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="assets/1560178298122.png"
+                      alt="1560178298122"
+                > </p>
 </li>
 </ul>
 <h2 id="12-Spring-Boot整合-通用Mapper"><a href="#12-Spring-Boot整合-通用Mapper" class="headerlink" title="12. Spring Boot整合-通用Mapper"></a>12. Spring Boot整合-通用Mapper</h2><p><strong>目标</strong>：配置通用Mapper组件到Spring Boot项目中并使用Mapper<T>接口</p>
@@ -404,21 +499,21 @@
         
             <div class="article-nav">
                 
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/2021/05/18/test-my-site/"
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/05/19/%E5%A7%BF%E6%80%81%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"
                         >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">test_my_site</span>
-                                <span class="post-nav-item">Next posts</span>
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
                             </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">related</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
+                
                 
             </div>
         
@@ -444,6 +539,16 @@
             2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Keep Team</a>
         </div>
         
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
         <div class="theme-info info-item">
             Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
         </div>
@@ -459,6 +564,10 @@
             <div class="post-tools-container">
     <ul class="tools-list">
         <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
         
 
         <!-- go comment -->
@@ -513,6 +622,14 @@
     </div>
 
     
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Spring-Boot%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">1. Spring Boot概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Spring-Boot%E5%85%A5%E9%97%A8"><span class="nav-number">2.</span> <span class="nav-text">2. Spring Boot入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Java%E4%BB%A3%E7%A0%81%E6%96%B9%E5%BC%8F%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">3. Java代码方式配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Spring-Boot%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">4. Spring Boot属性注入方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%A4%9A%E4%B8%AAyml%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">5. 多个yml文件配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">6. 自动配置原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-lombok%E5%BA%94%E7%94%A8"><span class="nav-number">7.</span> <span class="nav-text">7. lombok应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Spring-Boot%E6%95%B4%E5%90%88-SpringMVC%E7%AB%AF%E5%8F%A3%E5%92%8C%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90"><span class="nav-number">8.</span> <span class="nav-text">8. Spring Boot整合-SpringMVC端口和静态资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Spring-Boot%E6%95%B4%E5%90%88-SpringMVC%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-number">9.</span> <span class="nav-text">9.Spring Boot整合-SpringMVC拦截器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Spring-Boot%E6%95%B4%E5%90%88-%E4%BA%8B%E5%8A%A1%E5%92%8C%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="nav-number">10.</span> <span class="nav-text">10. Spring Boot整合-事务和连接池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Spring-Boot%E6%95%B4%E5%90%88-Mybatis"><span class="nav-number">11.</span> <span class="nav-text">11. Spring Boot整合-Mybatis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Spring-Boot%E6%95%B4%E5%90%88-%E9%80%9A%E7%94%A8Mapper"><span class="nav-number">12.</span> <span class="nav-text">12. Spring Boot整合-通用Mapper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Spring-Boot%E6%95%B4%E5%90%88%E6%B5%8B%E8%AF%95"><span class="nav-number">13.</span> <span class="nav-text">13. Spring Boot整合测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Spring-Boot%E6%95%B4%E5%90%88-Junit"><span class="nav-number">14.</span> <span class="nav-text">14. Spring Boot整合-Junit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-Spring-Boot%E6%95%B4%E5%90%88-redis"><span class="nav-number">15.</span> <span class="nav-text">15. Spring Boot整合-redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-Spring-Boot%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2"><span class="nav-number">16.</span> <span class="nav-text">16. Spring Boot项目部署</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
 
     <div class="image-viewer-container">
     <img src="">
@@ -520,32 +637,91 @@
 
 
     
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
 
 </main>
 
 
 
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
 
-<script src="/js/utils.js"></script>
 
-<script src="/js/main.js"></script>
-
-<script src="/js/header-shrink.js"></script>
-
-<script src="/js/back2top.js"></script>
-
-<script src="/js/dark-light-toggle.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
 
 
 
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
 
 
 
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
 
 
-<div class="post-scripts">
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
     
 </div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
 
 
 
