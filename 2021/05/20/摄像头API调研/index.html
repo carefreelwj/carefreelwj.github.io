@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Keep Team">
+    
+    <title>
+        
+            摄像头API调研 |
+        
+        Keep Theme
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://img-blog.csdnimg.cn/20210519111308834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODYyMjIz,size_16,color_FFFFFF,t_70#pic_center">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"https://img-blog.csdnimg.cn/20210519110527918.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODYyMjIz,size_16,color_FFFFFF,t_70#pic_center","favicon":"https://img-blog.csdnimg.cn/20210519111308834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODYyMjIz,size_16,color_FFFFFF,t_70#pic_center","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Keep Theme
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">摄像头API调研</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://img-blog.csdnimg.cn/20210519110527918.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODYyMjIz,size_16,color_FFFFFF,t_70#pic_center">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Keep Team</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-05-20 20:23:09
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%97%A5%E5%B8%B8%E8%B0%83%E7%A0%94/">日常调研</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%91%84%E5%83%8F%E5%A4%B4-%E5%8D%8E%E4%B8%BA%E4%BA%91/">摄像头 华为云</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.3k Words</span>
+        </span>
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="1-华为云视频接入服务"><a href="#1-华为云视频接入服务" class="headerlink" title="1.华为云视频接入服务"></a>1.华为云视频接入服务</h3><p>该服务提供实时视频数据接入功能，包括摄像头视频数据采集、实时数据分发和视频数据转储等能力。借助视频接入服务，您可以与华为云视频分析服务集成，快速构建基于实时视频数据的智能分析应用。</p>
+<h4 id="a-视频接入服务"><a href="#a-视频接入服务" class="headerlink" title="a.视频接入服务"></a>a.视频接入服务</h4><p>视频接入服务（Video Ingestion Service，简称VIS）是华为云提供的实时视频数据接入服务，提供了摄像头视频数据采集、实时数据分发和视频数据转储等能力。借助视频接入服务，您可以与华为云视频分析服务集成，快速构建基于实时视频数据的智能分析应用。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://support.huaweicloud.com/vis_faq/zh-cn_image_0164504942.png"
+                      alt="img"
+                ></p>
+<p>视频接入服务支持一下类型：</p>
+<ul>
+<li>视频流：支持RTMP和HTTP-FLV类型的视频流，视频流编码格式支持H264。</li>
+<li>设备：支持GB28181摄像设备接入，视频流编码格式支持H264、H265。</li>
+</ul>
+<p>使用场景广泛，包括智慧园区监控、智慧城市安防</p>
+<h4 id="智慧园区监控"><a href="#智慧园区监控" class="headerlink" title="智慧园区监控"></a>智慧园区监控</h4><p>园区大量使用门禁闸机、摄像头等设备实现安全管理，VIS提供了便捷的视频流管理，与华为EI视频分析服务（Video Analysis Service，VAS）对接，助力智慧园区应用的开发和运维。</p>
+<ul>
+<li>便捷易用：快速建立界面可视化的多路视频流管理。</li>
+<li>多协议支持：通过GB28181、RTMP协议自动收集和传输视频流数据。</li>
+<li>AI应用：利用人脸识别、视频分析服务实现智慧园区应用。</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://support.huaweicloud.com/productdesc-vis/zh-cn_image_0289835024.png"
+                      alt="img"
+                ></p>
+<h4 id="智慧城市安防"><a href="#智慧城市安防" class="headerlink" title="智慧城市安防"></a>智慧城市安防</h4><p>VIS高效收集和传输城市安防产生的大量视频流数据，持久化存储，并与视频分析服务对接，实现快速分析处理。</p>
+<ul>
+<li>多协议支持：通过GB28181协议实现摄像设备管理、视频流收集传输。</li>
+<li>AI应用：使用人脸识别、视频分析、ModelArts服务进行智能分析处理。</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://support.huaweicloud.com/productdesc-vis/zh-cn_image_0289835286.png"
+                      alt="img"
+                ></p>
+<h4 id="b-API概览"><a href="#b-API概览" class="headerlink" title="b.API概览"></a>b.API概览</h4><p>1.视频流管理</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://support.huaweicloud.com/api-vis/vis_03_0018.html" >创建视频流<i class="fas fa-external-link-alt"></i></a>：该接口用于创建视频流。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://support.huaweicloud.com/api-vis/vis_03_0019.html" >更新视频流<i class="fas fa-external-link-alt"></i></a>：该接口用于更新视频流的详情，包括RTMP以及HTTP-FLV类型视频流。对于GB28181设备自动关联的视频流，不能通过该接口进行更新。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://support.huaweicloud.com/api-vis/vis_03_0020.html" >删除视频流<i class="fas fa-external-link-alt"></i></a>：此接口用于删除指定视频流。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://support.huaweicloud.com/api-vis/vis_03_0021.html" >更新转储信息<i class="fas fa-external-link-alt"></i></a>：此接口用于更新视频转储信息。创建的视频流默认没有转储信息，即视频数据不会保存。更新转储信息后可以将视频流保存到指定的存储媒介，如OBS。后续用户可以从OBS上获取到转储的视频。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://support.huaweicloud.com/api-vis/vis_03_0022.html" >获取视频流信息<i class="fas fa-external-link-alt"></i></a>：此接口用于获取指定视频流的详细信息。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://support.huaweicloud.com/api-vis/vis_03_0023.html" >获取视频流列表<i class="fas fa-external-link-alt"></i></a>：此接口用于获取所有视频流的详细信息。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://support.huaweicloud.com/api-vis/vis_03_0024.html" >获取视频流地址<i class="fas fa-external-link-alt"></i></a>：此接口用于获取指定视频流的地址。该地址用于进行视频流推流或者拉流。</li>
+</ul>
+<p>2.设备指标统计</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://support.huaweicloud.com/api-vis/vis_03_0063.html" >获取曾经上线设备列表<i class="fas fa-external-link-alt"></i></a>:该接口用于获取曾经上线的GB28181设备列表，即只要上线过的设备信息都会显示。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://support.huaweicloud.com/api-vis/vis_03_0058.html" >获取新上线设备列表<i class="fas fa-external-link-alt"></i></a>:该接口用于获取今天新上线（即之前没有上线记录）的GB28181设备列表。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://support.huaweicloud.com/api-vis/vis_03_0064.html" >获取视频包接收率<i class="fas fa-external-link-alt"></i></a>:该接口用于获取当天有视频接入的GB28181设备的平均视频包接受率的列表。</li>
+</ul>
+<h3 id="2-海康威视摄像机的二次开发"><a href="#2-海康威视摄像机的二次开发" class="headerlink" title="2. 海康威视摄像机的二次开发"></a>2. 海康威视摄像机的二次开发</h3><p>设备必须满足的要求：</p>
+<ul>
+<li>支持二次开发</li>
+<li>支持无线联网</li>
+<li>像素能看</li>
+<li>价钱合适</li>
+</ul>
+<p>综合以上指标最后选定：DS-2DC2204IW-DE3/W</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20200912114343145.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dqd19qYXZh,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="camera"
+                ></p>
+<h4 id="a-摄像头的激活"><a href="#a-摄像头的激活" class="headerlink" title="a. 摄像头的激活"></a>a. 摄像头的激活</h4><p>新购买的设备需要通过 SADP工具 激活。</p>
+<p>激活的过程：</p>
+<p>设备上电，并连接局域网<br>下载 SADP工具，并安装在同一个局域网的电脑上，打开工具，搜索到的设备是“未激活”状态。<br>输入新密码、确认密码，点击 激活，激活成功后，设备状态变为“激活”状态，并且可以修改设备的网络参数(IP，PORT)<br> 设备已经激活完毕，并且设备的IP、端口、用户名(默认用户是 admin)、密码均已设置完毕。</p>
+<h3 id="b-集成-SDK-开发"><a href="#b-集成-SDK-开发" class="headerlink" title="b. 集成 SDK 开发"></a>b. 集成 SDK 开发</h3><p>海康设备的SDK是通过网络的方式访问设备，需要用到设备激活过程中设置的参数：IP、端口、用户名、密码、主动注册登录设备</p>
+<p>海康威视的设备能力，按照设备类型对外开放，现阶段（2020-9）按照设备类型对外开放的接口，包括：AI 摄像机、通用摄像机、出入口产品、门禁产品</p>
+<h3 id="c-SDK-接口的主要调用流程"><a href="#c-SDK-接口的主要调用流程" class="headerlink" title="c.SDK 接口的主要调用流程"></a>c.SDK 接口的主要调用流程</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img-blog.csdnimg.cn/20200912114435344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dqd19qYXZh,size_16,color_FFFFFF,t_70#pic_center"
+                      alt="process"
+                ></p>
+<p>其中虚线框的流程是可选部分，不会影响其他流程和模块的功能使用。按实现功能的不同可以分成十个模块，实现每个模块的功能时初始化SDK、用户注册设备、注销设备和释放SDK资源这4个流程是必不可少的。</p>
+<ul>
+<li>初始化 SDK：对整个网络SDK系统的初始化、内存分配等操作。</li>
+<li>设置连接超时时间：可选，用于设置SDK中的网络连接超时时间，用户可以根据自己的需要设置该值，在不调用此接口设置超时时间的情况下，将采用SDK中的默认值。</li>
+<li>设置接收异常消息的回调函数：由于SDK中大部分模块的功能都是由异步模式实现，所以可以使用此接口接收预览、报警、回放、透明通道和语音对讲等模块发生的异常信息。用户可以在初始化SDK后就设置该回调函数，在应用层对各个模块异常消息的接收和处理。<br>从解析服务器获得设备的IP地址：该接口提供一种在仅知道设备名称（或者设备域名）和序列号的情况下，从解析服务器（IP Server 或者 DDNS Dynamic Domain Name Server，动态域名服务）获得设备IP地址的方法。</li>
+<li>用户注册设备：实现用户的注册功能，注册成功后返回的用户ID作为其他功能操作的唯一标识，SDK允许最大注册个数为2048个。就设备而言，V3.0以上版本支持的设备允许有32个注册用户名，而且同时最多允许128个用户注册；V3.0一下版本支持的设备允许有16个注册用户名；而且同时最多允许128个用户注册。<br>预览模块：从设备取实时码流，解码显示以及播放控制、抓图等功能。<br>回放和下载模块：可以通过按时间和文件名的方式远程回放或者下载设备的录像文件，后续可以进行解码或存储。同时还支持断点续传功能。</li>
+<li>参数配置模块：设置和获取设备参数，主要包括设备参数、网络参数、通道压缩参数、串口参数、报警参数、异常参数、交易信息和用户配置等参数。<br>远程设备维护模块：实现关闭设备、重启设备、恢复默认值、远程硬盘格式化、远程升级和配置文件导入/导出等维护工作。</li>
+<li>语音对讲转发模块：实现和设备的语音数据对讲和语音数据获取，音频编码格式指定。</li>
+<li>报警模块：处理设备上传的各种报警信号。报警分为”布防“和”监听“两种方式，在采用监听方式并且不需要获取用户ID的情况下，报警模块可以无需进行”用户注册“操作步骤。</li>
+<li>透明通道模块：透明通道是将IP数据报文解析后直接发送到串行口的一种技术。实际上起到了沿伸串行设备控制距离的作用。可利用IP网络控制多种串行设备，如控制解码器、矩阵、报警主机、门禁、仪器仪表等串行设备，对用户来说，只看到了点对点的传输，无须关心网络传输的过程，所以称为串口透明通道。SDK提供485和232串口作为透明通道功能，其中要将232作为透明通道使用，首先必须在232串口的配置信息中将工作模式选为透明通道，这样232串口才可作为透明通道使用。</li>
+<li>云台控制模块：实现对云台的基本操作、预置点、巡航、轨迹和透明云台的控制。SDK将云台控制分为两种模式：一种是通过图像预览返回的句柄进行控制；另一种是无预览限制，通过用户注册ID号进行云台控制。</li>
+<li>解码器功能模块：实现解码器设备的配置、解码控制等功能。SDK支持单路解码器和多路解码器，但目前以多路解码器为主流产品。</li>
+<li>智能行为分析模块：实现对智能产品的参数配置，报警上传和能力集获取等功能</li>
+</ul>
+<h3 id="3-安卓如何调用摄像头拍照"><a href="#3-安卓如何调用摄像头拍照" class="headerlink" title="3.安卓如何调用摄像头拍照"></a>3.安卓如何调用摄像头拍照</h3><h4 id="创建布局文件"><a href="#创建布局文件" class="headerlink" title="创建布局文件"></a>创建布局文件</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">// 创建布局文件</span><br><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">&quot;http://schemas.android.com/apk/res-auto&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">&quot;.MainActivity&quot;</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!--用于显示预览--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">SurfaceView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/surfaceview&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--LinearLayout线性布局管理器 放在父容器底部--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--LinearLayout线性布局管理器 内部水平分布--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentBottom</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:orientation</span>=<span class="string">&quot;horizontal&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:gravity</span>=<span class="string">&quot;center_horizontal&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">&quot;@+id/take_photo&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">&quot;拍照&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">&quot;@+id/preview&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">&quot;打开摄像头&quot;</span> /&gt;</span></span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="主函数方法"><a href="#主函数方法" class="headerlink" title="主函数方法"></a>主函数方法</h4><p>1.这里调用了<strong>Camera 的类</strong><br>2.声明一个布尔型变量ispreview，用来判断摄像头是否打开</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写在开始部分</span></span><br><span class="line">  <span class="keyword">private</span> Camera camera;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">boolean</span> ispreview = <span class="keyword">false</span>;</span><br></pre></td></tr></table></figure>
+
+<p>3.设置全屏显示</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//写在onCreat方法里面</span></span><br><span class="line">getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,</span><br><span class="line">               WindowManager.LayoutParams.FLAG_FULLSCREEN);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>4.获取SurfaceView,SurfaceHolder</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写在onCreat方法里面</span></span><br><span class="line">   <span class="keyword">final</span> SurfaceView surface = findViewById(R.id.surfaceview);<span class="comment">//获取surfaceview</span></span><br><span class="line">      <span class="keyword">final</span> SurfaceHolder surfaceHolder = surface.getHolder();<span class="comment">//获取suafaceholder</span></span><br><span class="line">      surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>5.获取监听预览按钮</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//写在onCreat方法里面</span></span><br><span class="line">Button preview = findViewById(R.id.preview);</span><br><span class="line">       preview.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">               <span class="keyword">if</span> (!ispreview) &#123;<span class="comment">//如果没打开</span></span><br><span class="line">                   camera = Camera.open();<span class="comment">//打开摄像头</span></span><br><span class="line">                   ispreview = <span class="keyword">true</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">try</span> &#123;</span><br><span class="line">                   camera.setPreviewDisplay(surfaceHolder);<span class="comment">//设置预览</span></span><br><span class="line">                   Camera.Parameters parameters = camera.getParameters();<span class="comment">//获取摄像头参数</span></span><br><span class="line"></span><br><span class="line">                   parameters.setPictureFormat(PixelFormat.JPEG);<span class="comment">//设置图片为jpg</span></span><br><span class="line">                   parameters.set(<span class="string">&quot;jpeg-quality&quot;</span>, <span class="number">80</span>);<span class="comment">//设置图片质量</span></span><br><span class="line"></span><br><span class="line">                   camera.setParameters(parameters);<span class="comment">//重新设置摄像头参数</span></span><br><span class="line">                   camera.startPreview();<span class="comment">//开始预览</span></span><br><span class="line">                   camera.setDisplayOrientation(<span class="number">90</span>);<span class="comment">//不加的话，预览的图像就是横的</span></span><br><span class="line">                   camera.autoFocus(<span class="keyword">null</span>);<span class="comment">//自动对焦</span></span><br><span class="line"></span><br><span class="line">               &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                   e.printStackTrace();</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>6.拍照</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写在onCreat方法里面</span></span><br><span class="line">Button take_photo = (Button)findViewById(R.id.take_photo);<span class="comment">//获取按钮</span></span><br><span class="line">take_photo.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;<span class="comment">//监听</span></span><br><span class="line">          <span class="meta">@Override</span></span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">              <span class="keyword">if</span> (camera != <span class="keyword">null</span>) &#123;</span><br><span class="line">                  camera.takePicture(<span class="keyword">null</span>, <span class="keyword">null</span>, jpeg);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>7.存储图像</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写在onCreat方法外面</span></span><br><span class="line"><span class="keyword">final</span> Camera.PictureCallback jpeg = <span class="keyword">new</span> Camera.PictureCallback() &#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPictureTaken</span><span class="params">(<span class="keyword">byte</span>[] data, Camera camera)</span> </span>&#123;</span><br><span class="line">          Bitmap bitmap = BitmapFactory.decodeByteArray(data, <span class="number">0</span>, data.length);</span><br><span class="line">          <span class="comment">//根据拍照得到的数据集创建位图</span></span><br><span class="line">          camera.stopPreview();</span><br><span class="line">          ispreview = <span class="keyword">false</span>;</span><br><span class="line">          File appDir = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), <span class="string">&quot;/DCIM/Camera/&quot;</span>);</span><br><span class="line">          <span class="keyword">if</span> (!appDir.exists()) &#123;<span class="comment">//如果目录不存在</span></span><br><span class="line">              appDir.mkdir();<span class="comment">//创建目录</span></span><br><span class="line">          &#125;</span><br><span class="line">          String filename = System.currentTimeMillis() + <span class="string">&quot;.jpg&quot;</span>;</span><br><span class="line">          File file = <span class="keyword">new</span> File(appDir, filename);</span><br><span class="line"></span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">              FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">              <span class="comment">//创建文件输出流</span></span><br><span class="line">              bitmap.compress(Bitmap.CompressFormat.JPEG, <span class="number">100</span>, outputStream);</span><br><span class="line">              <span class="comment">//将图片压缩成JPEG格式输出到输出流</span></span><br><span class="line">              outputStream.flush();<span class="comment">//将缓冲区的数据都输入到输出流</span></span><br><span class="line">              outputStream.close();<span class="comment">//关闭输出流</span></span><br><span class="line">          &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">              e.printStackTrace();</span><br><span class="line">          &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">              e.printStackTrace();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">//将图片插入到系统图库</span></span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">              MediaStore.Images.Media.insertImage(MainActivity.<span class="keyword">this</span>.getContentResolver(), file.getAbsolutePath(), filename, <span class="keyword">null</span>);</span><br><span class="line">          &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">              e.printStackTrace();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">//通知图库更新</span></span><br><span class="line">          MainActivity.<span class="keyword">this</span>.sendBroadcast(<span class="keyword">new</span> Intent(Intent.</span><br><span class="line">                  ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(<span class="string">&quot;file://&quot;</span>+<span class="string">&quot;&quot;</span>)));</span><br><span class="line">          Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">&quot;照片已存&quot;</span>+file,Toast.LENGTH_LONG).show();</span><br><span class="line">          resetCamera();<span class="comment">//图片保存后，判断，是否需要重新打开预览，重新创建一个方法，第8步</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>8.重新判定摄像头是否在预览</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">resetCamera</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!ispreview) &#123;</span><br><span class="line">    camera.startPreview();</span><br><span class="line">    ispreview=<span class="keyword">true</span>;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>9.释放摄像头资源</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span>  <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onPause();</span><br><span class="line">    <span class="keyword">if</span>(camera!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        camera.stopPreview();</span><br><span class="line">        camera.release();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>10.从这边开始，我们就完成了整体布局，下面去manifest文件中进行权限处理<br>路径为：<strong>app/manifes/AndroidManifest.xml</strong> ， 这是安卓布局文件</p>
+<ol start="11">
+<li>增加了 <strong>摄像头权限，读写权限，自动对焦</strong> 的申请</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.MOUNT_UNMOUNT_FILESYSTEMS&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:ignore</span>=<span class="string">&quot;ProtectedPermissions&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.CAMERA&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-feature</span> <span class="attr">android:name</span>=<span class="string">&quot;android.hardware.camera&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-feature</span> <span class="attr">android:name</span>=<span class="string">&quot;android.hardware.camera.autofoucs&quot;</span>/&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/05/19/%E5%A7%BF%E6%80%81%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">related</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Keep Team</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8D%8E%E4%B8%BA%E4%BA%91%E8%A7%86%E9%A2%91%E6%8E%A5%E5%85%A5%E6%9C%8D%E5%8A%A1"><span class="nav-text">1.华为云视频接入服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E8%A7%86%E9%A2%91%E6%8E%A5%E5%85%A5%E6%9C%8D%E5%8A%A1"><span class="nav-text">a.视频接入服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%BA%E6%85%A7%E5%9B%AD%E5%8C%BA%E7%9B%91%E6%8E%A7"><span class="nav-text">智慧园区监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%BA%E6%85%A7%E5%9F%8E%E5%B8%82%E5%AE%89%E9%98%B2"><span class="nav-text">智慧城市安防</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-API%E6%A6%82%E8%A7%88"><span class="nav-text">b.API概览</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E6%91%84%E5%83%8F%E6%9C%BA%E7%9A%84%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91"><span class="nav-text">2. 海康威视摄像机的二次开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E6%91%84%E5%83%8F%E5%A4%B4%E7%9A%84%E6%BF%80%E6%B4%BB"><span class="nav-text">a. 摄像头的激活</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-%E9%9B%86%E6%88%90-SDK-%E5%BC%80%E5%8F%91"><span class="nav-text">b. 集成 SDK 开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-SDK-%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%B8%BB%E8%A6%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-text">c.SDK 接口的主要调用流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E5%8D%93%E5%A6%82%E4%BD%95%E8%B0%83%E7%94%A8%E6%91%84%E5%83%8F%E5%A4%B4%E6%8B%8D%E7%85%A7"><span class="nav-text">3.安卓如何调用摄像头拍照</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%B8%83%E5%B1%80%E6%96%87%E4%BB%B6"><span class="nav-text">创建布局文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95"><span class="nav-text">主函数方法</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
